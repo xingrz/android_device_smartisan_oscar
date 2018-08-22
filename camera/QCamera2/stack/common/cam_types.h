@@ -1527,6 +1527,7 @@ typedef struct {
     int32_t est_snap_iso_value;
     uint32_t est_snap_luma;
     uint32_t est_snap_target;
+    volatile char smartisan_reserved[4];
 } cam_3a_params_t;
 
 typedef struct {
@@ -2209,6 +2210,7 @@ typedef enum {
     CAM_INTF_META_TOUCH_AE_RESULT,
     /* Param for updating initial exposure index value*/
     CAM_INTF_PARM_INITIAL_EXPOSURE_INDEX,
+    SMARTISAN_RESERVED_PARAM_1,
     /* Gain applied post raw captrue.
        ISP digital gain */
     CAM_INTF_META_ISP_SENSITIVITY,
@@ -2228,6 +2230,8 @@ typedef enum {
        current configuration for pic res*/
     CAM_INTF_META_STREAM_INFO_FOR_PIC_RES,
     CAM_INTF_META_FOCUS_DEPTH_INFO,
+    SMARTISAN_RESERVED_PARAM_2,
+    SMARTISAN_RESERVED_PARAM_3,
     /*Focus value output from af core*/
     CAM_INTF_META_FOCUS_VALUE,
     /*Spot light detection result output from af core*/
