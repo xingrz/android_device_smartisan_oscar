@@ -29,4 +29,5 @@
 /sbl1           emmc    /dev/block/bootdevice/by-name/sbl1          flags=backup=1;subpartitionof=/aboot
 
 # Removable storage
-/usb-otg        vfat    /dev/block/sdd1         /dev/block/sdd      flags=storage;wipeingui;removable
+/usb-otg        vfat    /dev/block/sda1         /dev/block/sda      flags=storage;removable
+/external_sd    vfat    /dev/block/mmcblk1p1    /dev/block/mmcblk1  flags=storage;removable
