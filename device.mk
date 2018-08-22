@@ -154,6 +154,12 @@ PRODUCT_PACKAGES += \
     libbthost_if
 
 # Camera
+PRODUCT_PACKAGES += \
+    camera.msm8953 \
+    libmmcamera_interface \
+    libmmjpeg_interface \
+    libqomx_core
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/camera/camera_config.xml:system/etc/camera/camera_config.xml
 
