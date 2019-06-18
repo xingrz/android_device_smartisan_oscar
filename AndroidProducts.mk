@@ -15,4 +15,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/mk_oscar.mk
+    $(LOCAL_DIR)/omni_oscar.mk
