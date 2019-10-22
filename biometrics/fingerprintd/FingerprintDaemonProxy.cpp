@@ -25,6 +25,9 @@
 #include <keystore/keystore_return_types.h>
 #include <utils/Log.h>
 #include <utils/String16.h>
+#ifdef SMARTISAN_HACK
+#include <sys/stat.h>
+#endif
 
 #include "FingerprintDaemonProxy.h"
 
@@ -206,7 +209,25 @@ int64_t FingerprintDaemonProxy::openHal() {
     ALOG(LOG_VERBOSE, LOG_TAG, "nativeOpenHal()\n");
     int err;
     const hw_module_t *hw_module = NULL;
+#ifdef SMARTISAN_HACK
+    const char *fingerprint_id = NULL;
+
+    if (access("/dev/goodix_fp", F_OK) != -1) {
+        fingerprint_id = "fingerprint";
+        ALOGD("Detected goodix fingerprint sensor");
+    } else if (access("/dev/blfp", F_OK) != -1) {
+        fingerprint_id = "blestech.fingerprint";
+        ALOGD("Detected betterlife fingerprint sensor");
+        mkdir("/data/fpvendor/helitai_bf3582", S_IRWXU | S_IRWXG | S_IRWXO);
+    } else {
+        ALOGE("Can't detect fingerprint sensor");
+        return 0;
+    }
+
+    if (0 != (err = hw_get_module(fingerprint_id, &hw_module))) {
+#else
     if (0 != (err = hw_get_module(FINGERPRINT_HARDWARE_MODULE_ID, &hw_module))) {
+#endif
         ALOGE("Can't open fingerprint HW Module, error: %d", err);
         return 0;
     }

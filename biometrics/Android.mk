@@ -23,4 +23,6 @@ LOCAL_SHARED_LIBRARIES := \
     libkeystore_binder \
     android.hardware.biometrics.fingerprint@2.1
 
+LOCAL_CFLAGS := -DSMARTISAN_HACK
+
 include $(BUILD_EXECUTABLE)
